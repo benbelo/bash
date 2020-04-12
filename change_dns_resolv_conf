@@ -1,0 +1,24 @@
+fct_menu ()
+{
+echo "Choisissez votre DNS
+
+1 : Cloudflare -> 1.1.1.1
+2 : Google -> 8.8.8.8
+Q : Quitter
+
+Choix :"
+
+read optionmenu
+    case $optionmenu in
+    1)
+        sudo echo nameserver 1.1.1.1 > /etc/resolv.conf;;
+    2)
+        sudo echo nameserver 8.8.8.8 > /etc/resolv.conf;;
+    q)
+        exit;;
+    *)
+        echo "Invalide, réessayez"
+        fct_menu;;
+        esac
+}
+fct_menu

@@ -1,0 +1,12 @@
+read -p "Bienvenue sur le script repair_mergelist, appuyez sur entrée pour continuer"
+
+sudo rm /var/lib/apt/lists/* -vf
+
+pause () 
+{ 
+echo "Appuyez pour update" 
+read 
+clear 
+}
+
+sudo apt-get update

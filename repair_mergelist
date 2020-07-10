@@ -1,4 +1,4 @@
-read -p "Bienvenue sur le script repair_mergelist, appuyez sur entrée pour continuer"
+read -p "Bienvenue, appuyez sur Entree"
 
 sudo rm /var/lib/apt/lists/* -vf
 

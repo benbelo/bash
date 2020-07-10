@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Ajouter les differents subnets, valable que pour du classe C
+networkList="1,2,3,4" 
+
+read -p 'Dernier octet : ' octet
+
+IFS=',' read -ra network <<< "$networkList"
+for x in "${network[@]}"; do
+
+fping -a 192.168.$x.$octet 2> /dev/null
+
+done

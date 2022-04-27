@@ -1,12 +1,12 @@
 fct_menu ()
 {
-echo "Choisissez votre DNS
+echo "Select your DNS server
 
 1 : Cloudflare -> 1.1.1.1
 2 : Google -> 8.8.8.8
-Q : Quitter
+Q : Exit
 
-Choix :"
+Your choice :"
 
 read optionmenu
     case $optionmenu in
@@ -17,7 +17,7 @@ read optionmenu
     q)
         exit;;
     *)
-        echo "Invalide, réessayez"
+        echo "Invalid, please retry"
         fct_menu;;
         esac
 }

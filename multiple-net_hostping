@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Ajouter les differents subnets, valable que pour du classe C
+# Add below all the subnets (only class C networks)
 networkList="1,2,3,4" 
 
-read -p 'Dernier octet : ' octet
+read -p 'Enter last byte : ' octet
 
 IFS=',' read -ra network <<< "$networkList"
 for x in "${network[@]}"; do

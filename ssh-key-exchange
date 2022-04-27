@@ -1,2 +1,0 @@
-#!/bin/sh
-cat ~/.ssh/id_rsa.pub | ssh user@IP 'cat >> /etc/ssh/keys-root/authorized_keys' 

@@ -1,5 +1,19 @@
 #!/bin/bash
 
+usage=$(cat <<-END
+	  	Syntax error : [search-ad.sh -X username] options below :
+		-l <login> = mail info
+		-g <mail> = login info from email
+		-a <login> = pager
+		-e <login> = account expiration
+		-m <login> = employee ID
+		-b <login> = room number
+		-t <login> = phone and mobile
+		-o <login> = OU
+		-c <login> = when created
+	END
+	)
+
 while getopts ":m:b:t:e:a:l:g:o:c:*:" option; do
     case "${option}" in
         l)
@@ -57,16 +71,10 @@ while getopts ":m:b:t:e:a:l:g:o:c:*:" option; do
                 echo "$login - $created"
         ;;
         *)
-	        echo "Syntax error : [search-ad.sh -X username] options below :
-		-l <login> = mail info
-		-g <mail> = login info from email
-		-a <login> = pager
-		-e <login> = account expiration
-		-m <login> = employee ID
-		-b <login> = room number
-		-t <login> = phone and mobile
-		-o <login> = OU
-		-c <login> = when created"
-            ;;
+	        echo "$usage"
+		exit 1
     esac
 done
+
+if [ $OPTIND -eq 1 ]; then echo "$usage";
+fi

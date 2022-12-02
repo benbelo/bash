@@ -1,5 +1,34 @@
 #!/bin/bash
 
+date +%Y%m%d%H > date.txt
+
+file=db.file
+bottomserial=$(cat $file | grep Serial | awk '{print $1}')
+topserial=$(cat $file | grep last | awk '{print $6}')
+timestamp=$(cat date.txt)
+temp=$bottomserialplusone
+
+
+if [[ $bottomserial = $timestamp ]] && [[ $topserial = $bottomserial ]]; then
+	echo "Serials are the same, adding 1 to the bottom serial"
+	bottomserialplusone=$(awk "BEGIN {print $bottomserial + 1}")
+		sed -i "10s/$bottomserial/$bottomserialplusone/g" "$file"
+
+else
+
+	cp $file backup/.
+
+	echo "Copying actual serial into old one"
+  		sed -i "s/$topserial/$bottomserial/g" "$file"
+
+	echo "Updating new serial"
+  		sed -i "10s/$bottomserial/$timestamp/" "$file"
+
+	echo "Serials were udpated for $file"
+
+fi
+
+
 refreshbind="/usr/local/sbin/bind-refresh.sh"
 restartbind="systemctl restart bind9"
 
